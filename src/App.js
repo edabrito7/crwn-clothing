@@ -1,12 +1,17 @@
 import React from 'react';
-import Homepage from './pages/homepage/homepage';
+import { Switch, Route } from 'react-router-dom';
+import HomePage from './pages/homepage/homePage';
+import ShopPage from './pages/shoppage/shopPage';
 import './App.css';
 
 function App() {
   return (
     <div className="App">
-      Crwn-clothing project
-      <Homepage/>
+      <h1>Crwn-clothing project</h1>
+      <Switch>
+        <Route exact path='/' component={HomePage} />
+        <Route path='/shop' component={ShopPage} />
+      </Switch>  
     </div>
   );
 }
