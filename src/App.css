@@ -1,8 +1,11 @@
-.App {
+body {
     font-family: 'Open Sans Condensed', sans-serif;
-    padding: 20px, 60px;
+    padding: 20px 60px;
 }
 
-.App h1 {
-    text-align: center;
+
+
+
+.App a {
+    text-decoration: none;
 }
