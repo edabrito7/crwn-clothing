@@ -4,17 +4,17 @@ import 'firebase/auth';
 
 
 const config = {
-    apiKey: "AIzaSyCA4DgV8c1xKV0nqGGSU7zpnIz6phkaWtI",
-    authDomain: "crwn-clothing-ve.firebaseapp.com",
-    databaseURL: "https://crwn-clothing-ve.firebaseio.com",
-    projectId: "crwn-clothing-ve",
-    storageBucket: "crwn-clothing-ve.appspot.com",
-    messagingSenderId: "773716127179",
-    appId: "1:773716127179:web:877b77d36dc691667c9a4e",
-    measurementId: "G-S7ZX63J514"
-  };
+  apiKey: "AIzaSyCCkthpv8It-NBUxo08ZN5REqxEOOZJFxo",
+  authDomain: "crwn-db-7.firebaseapp.com",
+  databaseURL: "https://crwn-db-7.firebaseio.com",
+  projectId: "crwn-db-7",
+  storageBucket: "crwn-db-7.appspot.com",
+  messagingSenderId: "1074052661579",
+  appId: "1:1074052661579:web:64a1e1557fe2fabb2c68ce",
+  measurementId: "G-LM1WWY5ZZG"
+};
 
-  firebase.initializeApp({ config });
+  firebase.initializeApp( config );
 
 
   export const auth = firebase.auth();
@@ -25,4 +25,7 @@ const config = {
 
   provider.setCustomParameters({prompt: 'select_account'});
 
-  export const SignInWithGoogle = () => auth().signInWithPopup(provider)
+  export const signInWithGoogle = () => auth.signInWithPopup(provider);
+
+
+  export default firebase;
