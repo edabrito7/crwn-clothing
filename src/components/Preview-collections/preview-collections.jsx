@@ -6,8 +6,8 @@ import CollectionItem from '../collection-items/collection-item';
 const PreviewCollections = ({title, items}) => {
     const itemsFilterMaping = items
     .filter((item, idx) => idx < 4)
-    .map(({id, ...otherItemProps}) => {
-        return <CollectionItem key={id} {...otherItemProps}/>
+    .map((item) => {
+        return <CollectionItem key={item.id} item={item}/>
     })
     return(
         <div className='collection-preview'>
