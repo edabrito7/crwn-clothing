@@ -49,7 +49,7 @@ class DirectoryMenu extends Component {
 
     render() {
         const { sections } = this.state
-        const SectionsMaping = this.state.sections.map(({id, title, imageUrl, size}) => {
+        const SectionsMaping = sections.map(({id, title, imageUrl, size}) => {
             return <MenuItem 
             key = { id }
             title = { title } 
