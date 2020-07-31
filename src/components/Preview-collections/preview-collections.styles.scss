@@ -3,10 +3,16 @@
   flex-direction: column;
   margin-bottom: 30px;
 
+
+    
   .title {
-    font-size: 28px;
-    margin-bottom: 25px;
+      cursor: pointer;
+      font-size: 28px;
+      margin-bottom: 25px;
+      margin-right: auto;
   }
+
+  
 
   .preview {
     display: flex;

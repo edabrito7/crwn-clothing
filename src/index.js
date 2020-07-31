@@ -1,8 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
+import { PersistGate } from 'redux-persist/integration/react';
 import './index.css';
-import store from './redux/store';
+import {store, persistor } from './redux/store';
 import App from './App';
 import {
   BrowserRouter as Router,
@@ -11,9 +12,11 @@ import {
 
 ReactDOM.render(
   <React.StrictMode>
-    <Provider store={store}>
+    <Provider store={store}> 
       <Router>
-        <App />
+        <PersistGate persistor={persistor}>
+          <App />
+        </PersistGate>
       </Router>  
     </Provider>
     

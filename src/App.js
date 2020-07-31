@@ -5,6 +5,7 @@ import ShopPage from './pages/shoppage/shopPage';
 import SignInandSignUpPage from './pages/sign-in-and-sign-up/sign-in-and-sign-up';
 import CheckoutPage from './pages/checkout/checkout';
 import Header from './components/header/header';
+import ScrollToTop from './components/scroll-to-top/scrolltop';
 import { auth, createUserProfileDocument } from './firebase/firebase-utils'; 
 import { connect } from 'react-redux';
 import {setCurrentUser} from './redux/users/user-action';
@@ -40,7 +41,7 @@ class  App extends Component {
       
       
     })
-
+  
   }
 
   componentWillUnmount() {
@@ -50,13 +51,16 @@ class  App extends Component {
   render() {
     return (
       <div className="App">
+        <ScrollToTop>
         <Header />
         <Switch>
+          {window.scrollTo(0, 0)}
           <Route exact path='/' component={HomePage} />
           <Route path='/shop' component={ShopPage} />
           <Route exact path='/signin' render={() => this.props.currentUser ? (<Redirect to='/'/>) : (<SignInandSignUpPage/>)} />
           <Route  exact path='/checkout' component={CheckoutPage} />
-        </Switch>  
+        </Switch> 
+        </ScrollToTop> 
       </div>
     );
   }
