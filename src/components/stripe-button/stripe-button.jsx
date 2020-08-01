@@ -18,6 +18,7 @@ const onToken = token => {
         shippingAddress
         description={`Your total is $${price}`}
         amount={priceForStripe}
+        image='https://sendeyo.com/up/d/f3eb2117da'
         token={onToken}
         stripeKey={publishKey}
         />
