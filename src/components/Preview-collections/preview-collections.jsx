@@ -1,7 +1,10 @@
 import React from 'react';
 import { withRouter } from 'react-router-dom'
-import './preview-collections.styles.scss';
 import CollectionItem from '../collection-items/collection-item';
+
+import {PreviewCollectionContainer,
+    Title,
+    PreviewContainer} from './preview-collections.styles';
 
 
 const PreviewCollections = ({title, items, history, match, routeName,...otherProps}) => {
@@ -12,13 +15,13 @@ const PreviewCollections = ({title, items, history, match, routeName,...otherPro
         return <CollectionItem key={item.id} item={item}/>
     })
     return(
-        <div className='collection-preview'>
-            <h1 className='title' onClick={() => history.push(`shop/${routeName}`)}>{ title.toUpperCase() }</h1>
+        <PreviewCollectionContainer>
+            <Title onClick={() => history.push(`shop/${routeName}`)}>{ title.toUpperCase() }</Title>
 
-            <div className='preview ' >
+            <PreviewContainer>
             {itemsFilterMaping}
-            </div>    
-        </div>
+            </PreviewContainer>    
+        </PreviewCollectionContainer>
     )
 }
 

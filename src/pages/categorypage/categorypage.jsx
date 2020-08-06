@@ -3,7 +3,8 @@ import { connect } from 'react-redux';
 import CollectionItem from '../../components/collection-items/collection-item';
 import { selectCollection } from '../../redux/shop/shop-selectors';
 
-import './category.styles.scss';
+import { CategoryPageContainer, TitleStyle, ItemsContainer } from './categorypage.styles';
+
 
 
 const CategoryPage = ({match, collection}) => {
@@ -13,13 +14,13 @@ const CategoryPage = ({match, collection}) => {
     })
 
     return (
-        <div className='category-page'>
-            <h1 className='title'>{category.toUpperCase() }</h1>
-            <div className='items'>
+        <CategoryPageContainer>
+            <TitleStyle>{category.toUpperCase() }</TitleStyle>
+            <ItemsContainer>
             {MappingCategory}
-            </div>
+            </ItemsContainer>
             
-        </div>
+        </CategoryPageContainer>
     )
 }
 
