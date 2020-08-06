@@ -13,13 +13,15 @@ import { createStructuredSelector } from 'reselect';
 import {selectCurrentUser} from './redux/users/user-selectors';
 import './App.css';
 
+
+
 class  App extends Component {
 
 
   unSubscribeFromAuth = null;
 
   componentDidMount() {
-    const {setCurrentUser} = this.props;
+    const {setCurrentUser } = this.props;
     this.unSubscribeFromAuth = auth.onAuthStateChanged(async userAuth => {
       if (userAuth) {
         const userRef = await createUserProfileDocument(userAuth);
@@ -38,8 +40,6 @@ class  App extends Component {
       } else {
         setCurrentUser(userAuth);
       }
-      
-      
     })
   
   }

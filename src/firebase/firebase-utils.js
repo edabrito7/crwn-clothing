@@ -3,6 +3,7 @@ import 'firebase/firestore';
 import 'firebase/auth';
 
 
+
 const config = {
   apiKey: "AIzaSyCCkthpv8It-NBUxo08ZN5REqxEOOZJFxo",
   authDomain: "crwn-db-7.firebaseapp.com",
@@ -47,11 +48,53 @@ const config = {
     return userRef;
   }
 
-  const provider = new firebase.auth.GoogleAuthProvider();
 
-  provider.setCustomParameters({prompt: 'select_account'});
+export const addCollectionAndDocuments = async (collectionKey, objectToAdd) => {
 
-  export const signInWithGoogle = () => auth.signInWithPopup(provider);
+  const collectionRef = firestore.collection(collectionKey);
 
 
-  export default firebase;
+  console.log(collectionRef)
+
+
+  const batch = firestore.batch();
+  objectToAdd.forEach(obj => {
+    const newDocRef = collectionRef.doc();
+    batch.set(newDocRef, obj);
+    console.log(newDocRef);
+  });
+
+
+  return await batch.commit()
+}
+
+
+export const convertCollectionsSnapshotToMap = (collections) => {
+
+  const transformedCollection = collections.docs.map(doc => {
+    const { title, items } = doc.data();
+
+    return  {
+      routeName: encodeURI(title.toLowerCase()),
+      id: doc.id,
+      title,
+      items
+    }
+  })
+
+  console.log(transformedCollection)
+  return transformedCollection.reduce((accumulator, collection) => {
+    accumulator[collection.title.toLowerCase()] = collection;
+    return accumulator;
+  },{})
+}
+
+
+const provider = new firebase.auth.GoogleAuthProvider();
+
+provider.setCustomParameters({prompt: 'select_account'});
+
+export const signInWithGoogle = () => auth.signInWithPopup(provider);
+
+
+export default firebase;
