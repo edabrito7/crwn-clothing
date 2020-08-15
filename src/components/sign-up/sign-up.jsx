@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import FormInput from '../form-input/form-input';
 import CustomButton from '../custom-button/custom-button';
 import { auth,createUserProfileDocument} from '../../firebase/firebase-utils';
 import { SignUpContainer, Title } from './sign-up.styles';
+import {signUpStart} from '../../redux/users/user-action';
 
 
 
@@ -22,26 +24,28 @@ class SignUp extends Component {
     handleSubmit = async event => {
         event.preventDefault();
 
+        const { signUpStart } = this.props;
         const {displayName,email,password,confirmPassword} = this.state;
 
         if(password!==confirmPassword){
-            alert("password dont match")
+            alert("password don't match")
             return
         }
+        signUpStart(email,password,displayName)
+        
+        // try {
+        //     const { user } = await auth.createUserWithEmailAndPassword(email, password)
+        //     await createUserProfileDocument(user, {displayName})
 
-        try {
-            const { user } = await auth.createUserWithEmailAndPassword(email, password)
-            await createUserProfileDocument(user, {displayName})
-
-            this.setState = {
-                displayName: '',
-                email: '',
-                password: '',
-                confirmPassword: '',
-            }
-        } catch(error){
-            console.error(error);
-        }
+        //     this.setState = {
+        //         displayName: '',
+        //         email: '',
+        //         password: '',
+        //         confirmPassword: '',
+        //     }
+        // } catch(error){
+        //     console.error(error);
+        // }
     }
 
     handleChange = event => {
@@ -96,5 +100,10 @@ class SignUp extends Component {
     }
 }
 
+export const mapDispatchToProps = dispatch => ({
+    signUpStart: (email,password,displayName) => dispatch(signUpStart({email,password,displayName}))
+})
 
-export default SignUp;
+
+
+export default connect(null,mapDispatchToProps)(SignUp);

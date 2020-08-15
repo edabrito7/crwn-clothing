@@ -15,6 +15,16 @@ const config = {
   measurementId: "G-LM1WWY5ZZG"
 };
 
+
+export const getCurrentUser = () => {
+  return new Promise((resolve, reject) => {
+    const unsubscribe = auth.onAuthStateChanged(userAuth => {
+      unsubscribe();
+      resolve(userAuth);
+    }, reject)
+  });
+}
+
   firebase.initializeApp( config );
 
 
@@ -54,9 +64,6 @@ export const addCollectionAndDocuments = async (collectionKey, objectToAdd) => {
   const collectionRef = firestore.collection(collectionKey);
 
 
-  console.log(collectionRef)
-
-
   const batch = firestore.batch();
   objectToAdd.forEach(obj => {
     const newDocRef = collectionRef.doc();
@@ -90,11 +97,11 @@ export const convertCollectionsSnapshotToMap = (collections) => {
 }
 
 
-const provider = new firebase.auth.GoogleAuthProvider();
+export const googleProvider = new firebase.auth.GoogleAuthProvider();
 
-provider.setCustomParameters({prompt: 'select_account'});
+googleProvider.setCustomParameters({prompt: 'select_account'});
 
-export const signInWithGoogle = () => auth.signInWithPopup(provider);
+export const signInWithGoogle = () => auth.signInWithPopup(googleProvider);
 
 
 export default firebase;
