@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, { useEffect} from 'react';
 import { Switch, Route, Redirect } from 'react-router-dom';
 import HomePage from './pages/homepage/homePage';
 import ShopPage from './pages/shoppage/shopPage';
@@ -14,37 +14,28 @@ import './App.css';
 
 
 
-class  App extends Component {
+const App = ({checkUserSession, currentUser}) =>  {
 
+  useEffect( () => {
 
-  unSubscribeFromAuth = null;
+      checkUserSession();
 
-  componentDidMount() {
-    const {checkUserSession} = this.props;
-    checkUserSession();
-    
-  }
+  }, [checkUserSession])
 
-  componentWillUnmount() {
-    this.unSubscribeFromAuth();
-  }
-
-  render() {
     return (
       <div className="App">
         <ScrollToTop>
         <Header />
         <Switch>
-          {window.scrollTo(0, 0)}
           <Route exact path='/' component={HomePage} />
           <Route path='/shop' component={ShopPage} />
-          <Route exact path='/signin' render={() => this.props.currentUser ? (<Redirect to='/'/>) : (<SignInandSignUpPage/>)} />
+          <Route exact path='/signin' render={() => currentUser ? (<Redirect to='/'/>) : (<SignInandSignUpPage/>)} />
           <Route  exact path='/checkout' component={CheckoutPage} />
         </Switch> 
         </ScrollToTop> 
       </div>
     );
-  }
+  
   
 }
 

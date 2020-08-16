@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { useEffect } from 'react';
 import { Route } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
@@ -12,21 +12,13 @@ import { selectIsCollectionFetching, selectCollectionsLoaded } from '../../redux
 const CollectionsOverviewWithSpinner = WithSpinner(CollectionsOverview);
 const CategoryPageWithSpinner = WithSpinner(CategoryPage);
 
-class ShopPage  extends Component {
+const ShopPage = ({ fetchCollectionsStart, match, isCollectionsFetching, isCollectionsLoaded } ) => {
 
+    useEffect(() => {
 
-    unSubcribeFromSnapshot = null;
+        fetchCollectionsStart(); 
+    },[fetchCollectionsStart])
 
-
-    componentDidMount() {
-        const { fetchCollectionsStart } = this.props;
-        fetchCollectionsStart()
-        
-        
-    }
-
-    render() {
-        const { match, isCollectionsFetching, isCollectionsLoaded} = this.props
         return(
             <div>
                 <Route exact path={`${match.path}`} render={(props) => <CollectionsOverviewWithSpinner isLoading={isCollectionsFetching} {...props}/>}/>
@@ -34,7 +26,7 @@ class ShopPage  extends Component {
             </div>
             
         )
-    }
+ 
 
 } 
 
