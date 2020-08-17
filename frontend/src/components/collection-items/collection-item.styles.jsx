@@ -17,6 +17,14 @@ export const CollectionItemsContainer = styled.div`
         opacity: 0.8; 
     }
 
+    @media screen and (max-width: 800px)  {
+        width: 40vw;
+
+        &:hover {
+            opacity: unset; 
+        }
+    }
+
 `;
 
 
@@ -52,6 +60,7 @@ export const NameSpan = styled.span`
 export const PriceSpan = styled.span`
 
     width: 10%;
+    font-size: 0.8em;
 `;
 
 export const AddToCartButton = styled(CustomButton)`
@@ -64,6 +73,13 @@ export const AddToCartButton = styled(CustomButton)`
 
     ${CollectionItemsContainer}:hover & {
         display: flex;
+    }
+
+    @media screen and (max-width: 800px) {
+        display: block;
+        opacity: 0.9;
+        min-width: unset;
+        padding: 0 5px;
     }
 
 `;

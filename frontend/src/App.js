@@ -10,7 +10,7 @@ import { connect } from 'react-redux';
 import {checkUserSession} from './redux/users/user-action';
 import { createStructuredSelector } from 'reselect';
 import {selectCurrentUser} from './redux/users/user-selectors';
-import './App.css';
+import {GlobalStyle} from './global.styles'
 
 
 
@@ -23,7 +23,8 @@ const App = ({checkUserSession, currentUser}) =>  {
   }, [checkUserSession])
 
     return (
-      <div className="App">
+      <div >
+        <GlobalStyle/>
         <ScrollToTop>
         <Header />
         <Switch>
